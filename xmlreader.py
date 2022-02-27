@@ -16,5 +16,21 @@ def get_children(element , filter= None):
         return [e for e in element]
     else:
         return [e for e in element if filter == get_tag_name(e)]
-def getbody():
-    pass
+def is_iterable(elm):
+    return True
+def iterate_through(fn,elm):
+    i = 0 
+    while i < len(elm):
+        fn(elm[i])
+        if is_iterable(elm[i]):
+            iterate_through(fn,elm[i])            
+        i += 1
+
+def get_element_by_tag_name(tagname):
+    result = []
+    def sendtoresult(elm):
+        if get_tag_name(elm) == tagname:
+            result.append(elm)
+    iterate_through(sendtoresult ,root)
+    return result
+        
