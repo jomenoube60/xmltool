@@ -10,8 +10,11 @@ def trimtag(pattern,tag):
 
 def get_tag_name(element):
     return trimtag(trimpattern,element.tag)
-def get_child(element):
-    return [e for e in element]
 
+def get_children(element , filter= None):
+    if filter == None:
+        return [e for e in element]
+    else:
+        return [e for e in element if filter == get_tag_name(e)]
 def getbody():
     pass
